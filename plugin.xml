@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.wst.server.core.serverTypes">
+      <serverType
+            class="com.bridge.rptsvr.ServerDelegate"
+            description="Web Report Server Type"
+            id="com.bridge.rptsvr.serverType1"
+            name="Web Report Server "
+            runtime="true"
+            runtimeTypeId="com.bridge.rptsvr.runtimeType1">
+      </serverType>
+   </extension>
+   <extension
+         point="org.eclipse.wst.server.core.runtimeTypes">
+      <runtimeType
+            class="com.bridge.rptsvr.RuntimeType"
+            description="Report Server"
+            id="com.bridge.rptsvr.runtimeType1"
+            name="Report Server runtime"
+            vendor="BRIDGE"
+            vendorId="com.bridge"
+            version="1.0">
+      </runtimeType>
+   </extension>
+   <extension
+         point="org.eclipse.wst.server.core.serverLocators">
+      <serverLocator
+            class="com.bridge.rptsvr.ServerLocator1"
+            id="com.bridge.rptsvr.serverLocator1"
+            supportsRemoteHosts="com.bridge.rptsvr.serverLocator1"
+            typeIds="com.bridge.rptsvr.serverLocator1">
+      </serverLocator>
+   </extension>
+   <extension
+         point="org.eclipse.wst.server.core.publishers">
+      <publisher
+            class="com.bridge.rptsvr.PublisherDelegate:1"
+            description="description"
+            id="com.bridge.rptsvr.publisher1"
+            name="name"
+            order="com.bridge.rptsvr.publisher1"
+            typeIds="com.bridge.rptsvr.publisher1">
+      </publisher>
+   </extension>
+   <extension
+         point="org.eclipse.wst.server.core.moduleTypes">
+         <moduleType
+            id="com.bridge.reportModule"
+            name="reportModule"
+            description="report Module Type"/>         
+   </extension>
+</plugin>
