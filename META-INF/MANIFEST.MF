@@ -1,0 +1,16 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name
+Bundle-SymbolicName: com.bridge.rptsvr;singleton:=true
+Bundle-Version: 1.0.0.qualifier
+Bundle-Vendor: %Bundle-Vendor
+Automatic-Module-Name: com.bridge.rptsvr
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Require-Bundle: org.eclipse.wst.server.core;bundle-version="1.10.0",
+ org.eclipse.wst.server.ui;bundle-version="1.5.401",
+ org.eclipse.jst.server.core;bundle-version="1.2.600",
+ org.eclipse.jst.server.ui;bundle-version="1.1.400",
+ org.eclipse.core.runtime;bundle-version="3.13.0"
+Import-Package: org.eclipse.jst.server.core,
+ org.eclipse.wst.dtd.core.internal,
+ org.eclipse.wst.server.discovery
