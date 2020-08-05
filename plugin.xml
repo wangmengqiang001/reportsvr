@@ -51,4 +51,12 @@
             name="reportModule"
             description="report Module Type"/>         
    </extension>
+   <extension
+         point="org.eclipse.wst.server.ui.serverImages">
+      <image
+            icon="resources/rptsvr.gif"
+            id="com.bridge.rptsvr.image1"
+            typeIds="com.bridge.rptsvr.image1,com.bridge.reportModule,com.bridge.rptsvr.runtimeType1,com.bridge.rptsvr.serverType1">
+      </image>
+   </extension>
 </plugin>
