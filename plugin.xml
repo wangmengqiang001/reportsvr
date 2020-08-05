@@ -19,9 +19,13 @@
             description="Report Server"
             id="com.bridge.rptsvr.runtimeType1"
             name="Report Server runtime"
-            vendor="BRIDGE"
+            vendor="Bridge"
             vendorId="com.bridge"
             version="1.0">
+         <moduleType
+               types="web.reportModule"
+               versions="1.0,2.0">
+         </moduleType>
       </runtimeType>
    </extension>
    <extension
@@ -47,7 +51,7 @@
    <extension
          point="org.eclipse.wst.server.core.moduleTypes">
          <moduleType
-            id="com.bridge.reportModule"
+            id="web.reportModule"
             name="reportModule"
             description="report Module Type"/>         
    </extension>
