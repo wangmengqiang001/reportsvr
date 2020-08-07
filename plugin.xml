@@ -4,23 +4,31 @@
    <extension
          point="org.eclipse.wst.server.core.serverTypes">
       <serverType
+            behaviourClass="org.eclipse.jst.server.generic.core.internal.GenericServerBehaviour"
             class="com.bridge.rptsvr.ServerDelegate"
             description="Web Report Server Type"
+            hasConfiguration="false"
             id="com.bridge.rptsvr.serverType1"
             name="Web Report Server "
             runtime="true"
-            runtimeTypeId="com.bridge.rptsvr.runtimeType1">
+            initialState="stopped"
+           launchConfigId="org.eclipse.jst.server.generic.core.launchConfigurationType"
+           launchModes="run,debug,profile"
+            runtimeTypeId="com.bridge.rptsvr.runtimeType1"
+            startBeforePublish="true"
+           startTimeout="50000"
+           stopTimeout="15000"
+           supportsRemoteHosts="false">
       </serverType>
    </extension>
    <extension
          point="org.eclipse.wst.server.core.runtimeTypes">
       <runtimeType
-            class="com.bridge.rptsvr.RuntimeType"
-            description="Report Server"
+            class="org.eclipse.jst.server.core.internal.GenericRuntime"
+            description="It is a Report Server which show design report"
             id="com.bridge.rptsvr.runtimeType1"
-            name="Report Server runtime"
+            name="Report Server"
             vendor="Bridge"
-            vendorId="com.bridge"
             version="1.0">
          <moduleType
                types="web.reportModule"
@@ -34,7 +42,7 @@
             class="com.bridge.rptsvr.ServerLocator1"
             id="com.bridge.rptsvr.serverLocator1"
             supportsRemoteHosts="com.bridge.rptsvr.serverLocator1"
-            typeIds="com.bridge.rptsvr.serverLocator1">
+            typeIds="com.bridge.rptsvr.serverType1">
       </serverLocator>
    </extension>
    <extension
@@ -62,5 +70,36 @@
             id="com.bridge.rptsvr.image1"
             typeIds="com.bridge.rptsvr.image1,com.bridge.reportModule,com.bridge.rptsvr.runtimeType1,com.bridge.rptsvr.serverType1">
       </image>
+   </extension>
+   
+   <extension point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+         id="org.eclipse.jst.server.tomcat.ui.propertyTester"
+         namespace="org.eclipse.jst.server.tomcat.ui"
+         properties="hasConfiguration"
+         type="java.lang.Object"
+         class="org.eclipse.jst.server.tomcat.ui.internal.ConfigurationPropertyTester">
+      </propertyTester>
+   </extension>
+
+   <extension point="org.eclipse.wst.server.ui.editorPages">
+      <page
+         id="org.eclipse.jst.server.tomcat.configuration.editor.webmodule"
+         order="20"
+         name="%configurationEditorWebModulesPage"
+         typeIds="com.bridge.rptsvr.serverType11"
+         class="org.eclipse.jst.server.tomcat.ui.internal.editor.ConfigurationWebModuleEditorPart">
+         <enablement>
+           <test property="org.eclipse.jst.server.tomcat.ui.hasConfiguration" value="true"/>
+         </enablement>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.wst.server.ui.wizardFragments">
+      <fragment
+            class="com.bridge.rptsvr.WizardFragment1"
+            id="com.bridge.rptsvr.serverType1"
+            typeIds="com.bridge.rptsvr.serverType1">
+      </fragment>
    </extension>
 </plugin>

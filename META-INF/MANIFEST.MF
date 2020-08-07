@@ -8,5 +8,14 @@ Automatic-Module-Name: com.bridge.rptsvr
 Bundle-RequiredExecutionEnvironment: JavaSE-1.8
 Require-Bundle: org.eclipse.wst.server.core;bundle-version="1.10.0",
  org.eclipse.core.runtime;bundle-version="3.13.0",
- org.eclipse.jst.server.core;bundle-version="1.2.600",
- org.eclipse.wst.server.ui
+ org.eclipse.jst.server.core,
+ org.eclipse.wst.server.ui,
+ org.eclipse.swt,
+ org.eclipse.ui,
+ org.eclipse.ui.forms
+Bundle-ClassPath: .,
+ lib/org.eclipse.jst.server.tomcat.core_1.1.901.v201711152105.jar,
+ lib/org.eclipse.jst.server.tomcat.ui_1.1.600.v201709251835.jar
+Import-Package: org.eclipse.jdt.launching,
+ org.eclipse.swt.layout,
+ org.eclipse.swt.widgets
