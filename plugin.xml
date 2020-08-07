@@ -7,7 +7,7 @@
             behaviourClass="org.eclipse.jst.server.generic.core.internal.GenericServerBehaviour"
             class="com.bridge.rptsvr.ServerDelegate"
             description="Web Report Server Type"
-            hasConfiguration="false"
+            hasConfiguration="true"
             id="com.bridge.rptsvr.serverType1"
             name="Web Report Server "
             runtime="true"
@@ -24,7 +24,7 @@
    <extension
          point="org.eclipse.wst.server.core.runtimeTypes">
       <runtimeType
-            class="org.eclipse.jst.server.core.internal.GenericRuntime"
+            class="com.bridge.rptsvr.RuntimeType"
             description="It is a Report Server which show design report"
             id="com.bridge.rptsvr.runtimeType1"
             name="Report Server"
