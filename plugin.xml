@@ -39,9 +39,9 @@
    <extension
          point="org.eclipse.wst.server.core.serverLocators">
       <serverLocator
-            class="com.bridge.rptsvr.ServerLocator1"
+            class="org.eclipse.jst.server.tomcat.core.internal.TomcatServerLocator"
             id="com.bridge.rptsvr.serverLocator1"
-            supportsRemoteHosts="com.bridge.rptsvr.serverLocator1"
+            supportsRemoteHosts="false"
             typeIds="com.bridge.rptsvr.serverType1">
       </serverLocator>
    </extension>
@@ -82,18 +82,6 @@
       </propertyTester>
    </extension>
 
-   <extension point="org.eclipse.wst.server.ui.editorPages">
-      <page
-         id="org.eclipse.jst.server.tomcat.configuration.editor.webmodule"
-         order="20"
-         name="%configurationEditorWebModulesPage"
-         typeIds="com.bridge.rptsvr.serverType11"
-         class="org.eclipse.jst.server.tomcat.ui.internal.editor.ConfigurationWebModuleEditorPart">
-         <enablement>
-           <test property="org.eclipse.jst.server.tomcat.ui.hasConfiguration" value="true"/>
-         </enablement>
-      </page>
-   </extension>
    <extension
          point="org.eclipse.wst.server.ui.wizardFragments">
       <fragment
@@ -101,5 +89,44 @@
             id="com.bridge.rptsvr.serverType1"
             typeIds="com.bridge.rptsvr.serverType1">
       </fragment>
+   </extension>
+   <extension
+         point="org.eclipse.wst.server.ui.initialSelectionProvider">
+      <selectionProvider
+            class="com.bridge.rptsvr.SelectionProvider1"
+            id="com.bridge.rptsvr.selectionProvider1">
+      </selectionProvider>
+   </extension>
+   <extension
+         point="org.eclipse.wst.server.ui.serverCreationWizardPageExtension">
+      <serverCreationWizardPageExtension
+            class="com.bridge.rptsvr.ServerCreationWizardPageExtension"
+            id="com.bridge.rptsvr.serverCreationWizardPageExtension1">
+      </serverCreationWizardPageExtension>
+   </extension>
+   <extension
+         point="org.eclipse.wst.server.ui.editorPages">
+      <page
+            class="org.eclipse.jst.server.tomcat.ui.internal.editor.ConfigurationWebModuleEditorPart"
+            id="com.bridge.rptsvr.serverType1"
+            name="name"
+            typeIds="com.bridge.rptsvr.serverType1">
+         <enablement>
+            <test
+                  property="com.bridge.rptsvr.propertyTester1.hasConfiguration"
+                  value="true">
+            </test>
+         </enablement>
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.expressions.propertyTesters">
+      <propertyTester
+            class="org.eclipse.jst.server.tomcat.ui.internal.ConfigurationPropertyTester"
+            id="com.bridge.rptsvr.propertyTester1"
+            namespace="com.bridge.rptsvr.propertyTester1"
+            properties="hasConfiguration"
+            type="java.lang.Object">
+      </propertyTester>
    </extension>
 </plugin>
