@@ -20,6 +20,7 @@ public class WizardFragment1 extends WizardFragment {
 	public WizardFragment1() {
 		// TODO Auto-generated constructor stub
 		tomcatWizard = new TomcatRuntimeWizardFragment();
+		tomcatWizard.setTaskModel(this.getTaskModel());
 	}
 
 	@Override
@@ -31,13 +32,15 @@ public class WizardFragment1 extends WizardFragment {
 	@Override
 	public void enter() {
 		// TODO Auto-generated method stub
-		super.enter();
+		tomcatWizard.setTaskModel(this.getTaskModel());
+		tomcatWizard.enter();
 	}
 
 	@Override
 	public boolean isComplete() {
 		// TODO Auto-generated method stub
-		return true;
+		
+		return tomcatWizard.isComplete();
 	}
 
 }

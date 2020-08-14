@@ -4,17 +4,17 @@
    <extension
          point="org.eclipse.wst.server.core.serverTypes">
       <serverType
-            behaviourClass="org.eclipse.jst.server.generic.core.internal.GenericServerBehaviour"
-            class="com.bridge.rptsvr.ServerDelegate"
+            behaviourClass="org.eclipse.jst.server.tomcat.core.internal.TomcatServerBehaviour"
+            class="org.eclipse.jst.server.tomcat.core.internal.TomcatServer"
             description="Web Report Server Type"
             hasConfiguration="true"
-            id="com.bridge.rptsvr.serverType1"
+            id="com.bridge.rptsvr.server.tomcat.85"
             name="Web Report Server "
             runtime="true"
             initialState="stopped"
-           launchConfigId="org.eclipse.jst.server.generic.core.launchConfigurationType"
+           launchConfigId="org.eclipse.jst.server.tomcat.core.launchConfigurationType"
            launchModes="run,debug,profile"
-            runtimeTypeId="com.bridge.rptsvr.runtimeType1"
+            runtimeTypeId="com.bridge.rptsvr.runtime.tomcat.85"
             startBeforePublish="true"
            startTimeout="50000"
            stopTimeout="15000"
@@ -26,7 +26,7 @@
       <runtimeType
             class="com.bridge.rptsvr.RuntimeType"
             description="It is a Report Server which show design report"
-            id="com.bridge.rptsvr.runtimeType1"
+            id="com.bridge.rptsvr.runtime.tomcat.85"
             name="Report Server"
             vendor="Bridge"
             version="1.0">
@@ -36,26 +36,52 @@
          </moduleType>
       </runtimeType>
    </extension>
+   <extension point="org.eclipse.wst.server.core.runtimeLocators">
+    <runtimeLocator
+       id="org.eclipse.jst.server.tomcat.runtime.locator"
+       typeIds="com.bridge.rptsvr.runtime.tomcat.*"
+       class="org.eclipse.jst.server.tomcat.core.internal.TomcatRuntimeLocator"/>
+  </extension>
+
+  <extension point="org.eclipse.jst.server.core.runtimeClasspathProviders">
+     <runtimeClasspathProvider
+        id="org.eclipse.jst.server.tomcat.runtimeTarget"
+        runtimeTypeIds="com.bridge.rptsvr.runtime.tomcat.*"
+        class="org.eclipse.jst.server.tomcat.core.internal.TomcatRuntimeClasspathProvider"/>
+   </extension>
+   
    <extension
          point="org.eclipse.wst.server.core.serverLocators">
       <serverLocator
             class="org.eclipse.jst.server.tomcat.core.internal.TomcatServerLocator"
             id="com.bridge.rptsvr.serverLocator1"
             supportsRemoteHosts="false"
-            typeIds="com.bridge.rptsvr.serverType1">
+            typeIds="com.bridge.rptsvr.server.tomcat.*">
       </serverLocator>
    </extension>
-   <extension
-         point="org.eclipse.wst.server.core.publishers">
-      <publisher
-            class="com.bridge.rptsvr.PublisherDelegate:1"
-            description="description"
-            id="com.bridge.rptsvr.publisher1"
-            name="name"
-            order="com.bridge.rptsvr.publisher1"
-            typeIds="com.bridge.rptsvr.publisher1">
-      </publisher>
-   </extension>
+    <extension point="org.eclipse.wst.server.core.launchableAdapters">
+     <launchableAdapter
+           class="org.eclipse.jst.server.tomcat.core.internal.TomcatLaunchableAdapterDelegate"
+           id="org.eclipse.jst.server.tomcat.web"
+           typeIds="com.bridge.reptsvr.server.tomcat.*"/>
+  </extension>
+
+  <extension point="org.eclipse.debug.core.sourcePathComputers">
+     <sourcePathComputer
+        id="org.eclipse.jst.server.tomcat.core.sourcePathComputer"
+        class="org.eclipse.jst.server.tomcat.core.internal.TomcatSourcePathComputerDelegate"/>
+  </extension>
+
+  <extension point="org.eclipse.debug.core.launchConfigurationTypes">
+     <launchConfigurationType
+        id="org.eclipse.jst.server.tomcat.core.launchConfigurationType"
+        name="%tomcatLaunchConfigurationType"
+        delegate="org.eclipse.jst.server.tomcat.core.internal.TomcatLaunchConfigurationDelegate"
+        modes="run, debug, profile"
+        sourceLocatorId="org.eclipse.jdt.launching.sourceLocator.JavaSourceLookupDirector"
+        sourcePathComputerId="org.eclipse.jst.server.tomcat.core.sourcePathComputer"/>
+  </extension>
+  
    <extension
          point="org.eclipse.wst.server.core.moduleTypes">
          <moduleType
@@ -68,41 +94,53 @@
       <image
             icon="resources/rptsvr.gif"
             id="com.bridge.rptsvr.image1"
-            typeIds="com.bridge.rptsvr.image1,com.bridge.reportModule,com.bridge.rptsvr.runtimeType1,com.bridge.rptsvr.serverType1">
+            typeIds="web.reportModule,com.bridge.rptsvr.server.tomcat.85,com.bridge.rptsvr.runtime.tomcat.85">
       </image>
    </extension>
-   
-   <extension point="org.eclipse.core.expressions.propertyTesters">
-      <propertyTester
-         id="org.eclipse.jst.server.tomcat.ui.propertyTester"
-         namespace="org.eclipse.jst.server.tomcat.ui"
-         properties="hasConfiguration"
-         type="java.lang.Object"
-         class="org.eclipse.jst.server.tomcat.ui.internal.ConfigurationPropertyTester">
-      </propertyTester>
-   </extension>
+      
 
+   <extension point="org.eclipse.wst.server.ui.editorPageSections">
+      <section
+         id="org.eclipse.jst.server.tomcat.server.editor.instance"
+         order="0"
+         insertionId="org.eclipse.wst.server.editor.overview.left"
+         typeIds="com.bridge.rptsvr.server.tomcat.*"
+         class="org.eclipse.jst.server.tomcat.ui.internal.editor.ServerLocationEditorSection"/>
+      <section
+         id="org.eclipse.jst.server.tomcat.server.editor.general"
+         order="5"
+         insertionId="org.eclipse.wst.server.editor.overview.left"
+         typeIds="com.bridge.rptsvr.server.tomcat.*"
+         class="org.eclipse.jst.server.tomcat.ui.internal.editor.ServerGeneralEditorSection"/>
+      <section
+         id="org.eclipse.jst.server.tomcat.configuration.editor.port"
+         order="10"
+         insertionId="org.eclipse.wst.server.editor.overview.right"
+         typeIds="com.bridge.rptsvr.server.tomcat.*"
+         class="org.eclipse.jst.server.tomcat.ui.internal.editor.ConfigurationPortEditorSection">
+         <enablement>
+           <test property="com.bridge.rptsvr.server.ui.hasConfiguration" value="true"/>
+         </enablement>
+      </section>
+      <section
+         id="org.eclipse.jst.server.tomcat.configuration.editor.mime"
+         order="20"
+         insertionId="org.eclipse.wst.server.editor.overview.right"
+         typeIds="com.bridge.rptsvr.server.tomcat.*"
+         class="org.eclipse.jst.server.tomcat.ui.internal.editor.ConfigurationMimeEditorSection">
+         <enablement>
+           <test property="com.bridge.rptsvr.server.ui.hasConfiguration" value="true"/>
+         </enablement>
+      </section>
+   </extension>
+   
    <extension
          point="org.eclipse.wst.server.ui.wizardFragments">
       <fragment
-            class="com.bridge.rptsvr.WizardFragment1"
+            class="org.eclipse.jst.server.tomcat.ui.internal.TomcatRuntimeWizardFragment"
             id="com.bridge.rptsvr.serverType1"
-            typeIds="com.bridge.rptsvr.serverType1">
+            typeIds="com.bridge.rptsvr.server.tomcat.85">
       </fragment>
-   </extension>
-   <extension
-         point="org.eclipse.wst.server.ui.initialSelectionProvider">
-      <selectionProvider
-            class="com.bridge.rptsvr.SelectionProvider1"
-            id="com.bridge.rptsvr.selectionProvider1">
-      </selectionProvider>
-   </extension>
-   <extension
-         point="org.eclipse.wst.server.ui.serverCreationWizardPageExtension">
-      <serverCreationWizardPageExtension
-            class="com.bridge.rptsvr.ServerCreationWizardPageExtension"
-            id="com.bridge.rptsvr.serverCreationWizardPageExtension1">
-      </serverCreationWizardPageExtension>
    </extension>
    <extension
          point="org.eclipse.wst.server.ui.editorPages">
@@ -110,10 +148,10 @@
             class="org.eclipse.jst.server.tomcat.ui.internal.editor.ConfigurationWebModuleEditorPart"
             id="com.bridge.rptsvr.serverType1"
             name="name"
-            typeIds="com.bridge.rptsvr.serverType1">
+            typeIds="com.bridge.rptsvr.server.tomcat.*">
          <enablement>
             <test
-                  property="com.bridge.rptsvr.propertyTester1.hasConfiguration"
+                  property="com.bridge.rptsvr.server.ui.hasConfiguration"
                   value="true">
             </test>
          </enablement>
@@ -124,9 +162,89 @@
       <propertyTester
             class="org.eclipse.jst.server.tomcat.ui.internal.ConfigurationPropertyTester"
             id="com.bridge.rptsvr.propertyTester1"
-            namespace="com.bridge.rptsvr.propertyTester1"
+            namespace="com.bridge.rptsvr.server.ui"
             properties="hasConfiguration"
             type="java.lang.Object">
       </propertyTester>
+   </extension>
+   
+   <extension point="org.eclipse.wst.common.project.facet.core.runtimes">
+    <runtime-component-type
+       id="org.eclipse.jst.server.tomcat"/>
+
+    <runtime-component-version
+       type="org.eclipse.jst.server.tomcat"
+       version="8.5"/> 
+
+    <adapter>
+      <runtime-component
+         id="org.eclipse.jst.server.tomcat"/>
+      <factory
+         class="org.eclipse.jst.server.core.internal.RuntimeClasspathProvider$Factory"/>
+      <type
+         class="org.eclipse.jst.common.project.facet.core.IClasspathProvider"/>
+    </adapter>
+   
+
+    <supported>
+      <runtime-component
+         id="org.eclipse.jst.server.tomcat"
+         version="8.5"/>
+     <facet
+       id="web.reportModule"
+ 		version="1.0,2.0"/>         
+      <facet
+         id="jst.web"
+         version="2.2,2.3,2.4,2.5,3.0,3.1"/>
+      <facet
+         id="jst.webfragment"
+         version="3.0,3.1"/>
+      <facet
+         id="jst.utility"
+         version="1.0"/>
+    </supported>
+
+   
+  </extension>
+  
+  <extension point="org.eclipse.wst.common.project.facet.core.defaultFacets">
+    <default-facets>
+      <runtime-component id="org.eclipse.jst.server.tomcat"/>
+      <facet id="wst.jsdt.web" version="1.0"/>
+    </default-facets>
+  </extension>
+  
+  <extension point="org.eclipse.jst.server.core.runtimeFacetMappings">
+    <runtimeFacetMapping
+      runtimeTypeId="com.bridge.rptsvr.runtime.tomcat.85"
+      runtime-component="org.eclipse.jst.server.tomcat"
+      version="8.5"/>    
+  </extension>
+   
+   
+   <extension
+         point="org.eclipse.wst.common.project.facet.core.runtimes">
+       <runtime-component-version
+       type="org.eclipse.jst.server.rptServer"
+       version="1.0"/>
+      <adapter>
+         <runtime-component
+               id="org.eclipse.jst.server.rptServer"></runtime-component>
+         <factory
+         class="org.eclipse.jst.server.core.internal.RuntimeClasspathProvider$Factory"/>
+	      <type
+	         class="org.eclipse.jst.common.project.facet.core.IClasspathProvider"/>
+      </adapter>
+      <supported>
+         <facet
+               id="web.reportModule"
+         		version="1.0"/>
+         <facet
+               id="web.reportModule"
+         		version="2.0"/>
+         
+         <runtime-component
+               id="org.eclipse.jst.server.rptServer" version="1.0"></runtime-component>
+      </supported>
    </extension>
 </plugin>

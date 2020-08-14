@@ -105,7 +105,7 @@ public class TomcatRuntimeExt extends TomcatRuntime {
 			return status;
 //			return new Status(IStatus.ERROR, TomcatPlugin.PLUGIN_ID, 0, Messages.errorInstallDir, null);
 		// don't accept trailing space since that can cause startup problems
-		if (getRuntime().getLocation().hasTrailingSeparator())
+		if (this.getDelegate().getRuntime().getLocation().hasTrailingSeparator())
 			return new Status(IStatus.ERROR, TomcatPlugin.PLUGIN_ID, 0, Messages.errorInstallDirTrailingSlash, null);
 		if (getVMInstall() == null)
 			return new Status(IStatus.ERROR, TomcatPlugin.PLUGIN_ID, 0, Messages.errorJRE, null);
@@ -140,7 +140,7 @@ public class TomcatRuntimeExt extends TomcatRuntime {
 		if (!found)
 			return new Status(IStatus.WARNING, TomcatPlugin.PLUGIN_ID, 0, Messages.warningJRE, null);
 		
-		File f = getRuntime().getLocation().append("conf").toFile();
+		File f = this.getDelegate().getRuntime().getLocation().append("conf").toFile();
 		File[] conf = f.listFiles();
 		if (conf != null) {
 			int size = conf.length;
