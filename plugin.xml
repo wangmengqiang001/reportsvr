@@ -12,7 +12,7 @@
             name="Web Report Server "
             runtime="true"
             initialState="stopped"
-           launchConfigId="org.eclipse.jst.server.tomcat.core.launchConfigurationType"
+           launchConfigId="com.bridge.rptsvr.server.tomcat.core.launchConfigurationType"
            launchModes="run,debug,profile"
             runtimeTypeId="com.bridge.rptsvr.runtime.tomcat.85"
             startBeforePublish="true"
@@ -62,7 +62,7 @@
     <extension point="org.eclipse.wst.server.core.launchableAdapters">
      <launchableAdapter
            class="org.eclipse.jst.server.tomcat.core.internal.TomcatLaunchableAdapterDelegate"
-           id="org.eclipse.jst.server.tomcat.web"
+           id="com.bridge.reptsvr.server.tomcat.web"
            typeIds="com.bridge.reptsvr.server.tomcat.*"/>
   </extension>
 
@@ -74,7 +74,7 @@
 
   <extension point="org.eclipse.debug.core.launchConfigurationTypes">
      <launchConfigurationType
-        id="org.eclipse.jst.server.tomcat.core.launchConfigurationType"
+        id="com.bridge.rptsvr.server.tomcat.core.launchConfigurationType"
         name="%tomcatLaunchConfigurationType"
         delegate="org.eclipse.jst.server.tomcat.core.internal.TomcatLaunchConfigurationDelegate"
         modes="run, debug, profile"
